@@ -1,3 +1,6 @@
+import { DatabaseService } from '../services/database.service';
+import { QUESTIONS } from './lid-questions';
+
 export interface LidQuestion {
   num: string;
   question: string;
@@ -12,7 +15,29 @@ export interface LidQuestion {
   image: string;
 }
 
+export interface LidOption {
+  value: string;
+  text: string;
+  selected: boolean;
+  disabled: boolean;
+}
+
+export interface LidCollection {
+  title: string;
+  subtitle: string;
+  icon: string;
+  color: string;
+  questions: LidQuestion[];
+  onSelect?: (me: DatabaseService) => LidQuestion[],
+}
+
+export interface LidGroup {
+  title: string;
+  collections: LidCollection[];
+}
+
 export interface LidDatabase {
+  groups: LidGroup[];
   questions: LidQuestion[];
 }
 
@@ -30,4 +55,17 @@ export const NO_QUESTION: LidQuestion = {
   area: '<option a>',
   theme: '<option a>',
   image: '<option a>',
+};
+
+export const NO_COLLECTION: LidCollection = {
+  title: '<title>',
+  subtitle: '<subtitle>',
+  icon: 'help',
+  color: 'unknown',
+  questions: [],
+};
+
+export const DB: LidDatabase = {
+  groups: [],
+  questions: QUESTIONS,
 };

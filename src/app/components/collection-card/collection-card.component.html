@@ -1,0 +1,9 @@
+<div matRipple [matRippleCentered]="true" class="card" [ngClass]="getColor()" (click)="onSelected()">
+  <mat-icon class="icon">{{ collection.icon }}</mat-icon>
+  <div class="text">
+    <div class="title">{{ collection.title }} ({{ collection.questions.length }})</div>
+    <div class="subtitle">{{ collection.subtitle }}</div>
+  </div>
+  <div class="spacer"></div>
+  <mat-icon class="action">navigate_next</mat-icon>
+</div>

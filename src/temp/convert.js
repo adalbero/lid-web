@@ -8,14 +8,16 @@ function main() {
   console.log("BEGIN");
 
   const rd = readLine.createInterface({
-    input: fs.createReadStream("q.csv"),
+    input: fs.createReadStream("questions.csv"),
     console: false,
   });
 
-  fd = fs.createWriteStream("out.txt");
+  const qtd = 1000;
+
+  fd = fs.createWriteStream(`out-${qtd}.txt`);
   let n = 0;
   rd.on("line", (line) => {
-    if (n > 0) {
+    if (n > 0 && n <= qtd) {
       let result = transform(line);
       fd.write(result);
     }

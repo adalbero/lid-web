@@ -1,28 +1,50 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRippleModule } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ListComponent } from './components/list/list.component';
+import { CollectionCardComponent } from './components/collection-card/collection-card.component';
+import { CollectionListComponent } from './components/collection-list/collection-list.component';
+import { ListViewComponent } from './components/list/list-view.component';
 import { MainComponent } from './components/main/main.component';
 import { QuestionCardComponent } from './components/question-card/question-card.component';
+import { TitleBarComponent } from './components/title-bar/title-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    ListComponent,
+    ListViewComponent,
     QuestionCardComponent,
+    TitleBarComponent,
+    CollectionListComponent,
+    CollectionCardComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
 
     MatCardModule,
     MatCheckboxModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatListModule,
+    MatRippleModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

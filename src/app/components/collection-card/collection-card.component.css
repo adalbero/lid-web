@@ -1,0 +1,30 @@
+.card {
+    display: flex;
+    flex-direction: row;
+    border-radius: 25px;
+    padding: 2px 0;
+    align-items: center;
+    cursor: pointer;
+}
+
+.icon {
+    padding: 0 8px;
+}
+
+.action {
+    padding-left: 8px;
+}
+.spacer {
+    flex: 1 1 auto;
+}
+
+.title {
+    font-weight: bold;
+    margin-top: 2px;
+}
+
+.subtitle {
+    font-size: x-small;
+    margin-top: -4px;
+}
+

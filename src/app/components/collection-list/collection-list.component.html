@@ -1,0 +1,11 @@
+<div *ngFor="let group of groups">
+  <div class="group">
+    <div class="title">{{ group.title }}</div>
+    <app-collection-card
+      *ngFor="let coll of group.collections"
+      class="item"
+      [collection]="coll"
+      (selected)="onSelected($event)"
+    ></app-collection-card>
+  </div>
+</div>

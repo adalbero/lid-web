@@ -1,44 +1,27 @@
 <div class="card">
-  <div class="title">
+  <div class="title" [ngClass]="titleColor()">
     <div class="area">{{ q.area }}</div>
     <div class="num">{{ q.num }}</div>
   </div>
   <div class="frames">
-    <div class="status-frame" [ngClass]="getStatus()"></div>
+    <div class="status-frame" [ngClass]="statusColor()"></div>
     <div class="question-frame">
       <div class="question">{{ q.question }}</div>
       <div class="options">
         <mat-checkbox
+          *ngFor="let opt of options"
           class="option"
           color="primary"
-          value="a"
-          (click)="onResponse('a')"
-          >{{ q.a }}</mat-checkbox
-        >
-        <mat-checkbox
-          class="option"
-          color="primary"
-          value="b"
-          (click)="onResponse('b')"
-          >{{ q.b }}</mat-checkbox
-        >
-        <mat-checkbox
-          class="option"
-          color="primary"
-          value="c"
-          (click)="onResponse('c')"
-          >{{ q.c }}</mat-checkbox
-        >
-        <mat-checkbox
-          class="option"
-          color="primary"
-          value="d"
-          (click)="onResponse('d')"
-          >{{ q.d }}</mat-checkbox
+          [disabled]="opt.disabled"
+          [value]="opt.value"
+          [ngClass]="optionColor(opt)"
+          (click)="onResponse(opt.value)"
+          [(ngModel)]="opt.selected"
+          >{{ opt.text }}</mat-checkbox
         >
       </div>
       <div class="image" *ngIf="q.image !== '-'">
-        <img [src]="'assets/images/' + q.image" width="100%" />
+        <img [src]="'assets/images/' + q.image + '.png'" width="100%" />
       </div>
     </div>
   </div>

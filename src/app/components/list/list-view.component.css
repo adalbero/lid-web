@@ -1,5 +1,4 @@
 :host {
-    background-color: #f0f0f0;
     padding: 16px;
 
     display: grid;
@@ -8,7 +7,3 @@
     grid-gap: 16px;
 }
 
-.card {
-    --max-width: 300px;
-    padding: 0;
-}
