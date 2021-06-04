@@ -28,7 +28,7 @@ export const DB: LidDatabase = {
       area_code: 'politik',
       area: 'Politik in der Demokratie',
       theme: 'Grundrechte',
-      image: '-',
+      image: 'frage_21.png',
     },
     {
       num: '3',

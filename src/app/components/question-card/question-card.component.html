@@ -4,15 +4,42 @@
     <div class="num">{{ q.num }}</div>
   </div>
   <div class="frames">
-    <div class="status-frame"></div>
+    <div class="status-frame" [ngClass]="getStatus()"></div>
     <div class="question-frame">
       <div class="question">{{ q.question }}</div>
-      <ul class="options">
-        <li class="option">{{ q.a }}</li>
-        <li class="option">{{ q.b }}</li>
-        <li class="option">{{ q.c }}</li>
-        <li class="option">{{ q.d }}</li>
-      </ul>
+      <div class="options">
+        <mat-checkbox
+          class="option"
+          color="primary"
+          value="a"
+          (click)="onResponse('a')"
+          >{{ q.a }}</mat-checkbox
+        >
+        <mat-checkbox
+          class="option"
+          color="primary"
+          value="b"
+          (click)="onResponse('b')"
+          >{{ q.b }}</mat-checkbox
+        >
+        <mat-checkbox
+          class="option"
+          color="primary"
+          value="c"
+          (click)="onResponse('c')"
+          >{{ q.c }}</mat-checkbox
+        >
+        <mat-checkbox
+          class="option"
+          color="primary"
+          value="d"
+          (click)="onResponse('d')"
+          >{{ q.d }}</mat-checkbox
+        >
+      </div>
+      <div class="image" *ngIf="q.image !== '-'">
+        <img [src]="'assets/images/' + q.image" width="100%" />
+      </div>
     </div>
   </div>
 </div>

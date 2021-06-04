@@ -4,7 +4,11 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 * {
-    --color-right: hsl(120deg, 50%, 80%);
-    --color-worong: red;
-    --color-undefined: gray;
+    --hue-green: 120;
+    --hue-red: 0;
+
+    --color-right: hsl(var(--hue-green), 50%, 80%);
+    --color-worong: hsl(var(--hue-red), 50%, 80%);
+    --color-undefined: hsl(0, 0%, 80%);
+    --color-option: hsl(0, 0%, 95%);
 }
