@@ -12,6 +12,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SwiperModule } from 'swiper/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CardViewComponent } from './components/card-view/card-view.component';
@@ -42,6 +43,7 @@ import { TitleBarComponent } from './components/title-bar/title-bar.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    SwiperModule,
 
     MatCardModule,
     MatCheckboxModule,
