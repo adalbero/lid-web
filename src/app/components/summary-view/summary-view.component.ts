@@ -5,18 +5,18 @@ import { AppService } from 'src/app/services/app.service';
 import { ExamService } from 'src/app/services/exam.service';
 
 @Component({
-  selector: 'app-list-view',
-  templateUrl: './list-view.component.html',
-  styleUrls: ['./list-view.component.css'],
+  selector: 'app-summary-view',
+  templateUrl: './summary-view.component.html',
+  styleUrls: ['./summary-view.component.css'],
 })
-export class ListViewComponent implements OnInit, OnDestroy {
+export class SummaryViewComponent implements OnInit, OnDestroy {
   questions: LidQuestion[] = [];
   subscriptions: Subscription[] = [];
 
   constructor(private app: AppService, private exam: ExamService) {}
 
   ngOnInit(): void {
-    console.log('init list-view');
+    console.log('init summary-view');
     this.update(this.app.examRun?.collection.questions);
 
     this.subscriptions.push(this.exam.questions$.subscribe((questions) => {
@@ -25,13 +25,12 @@ export class ListViewComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    console.log('destroy list-view');
+    console.log('destroy summary-view');
     this.subscriptions.forEach(x => x.unsubscribe());
   }
 
-
   update(questions?: LidQuestion[]) {
-    console.log('list-view update');
+    console.log('summary-view update');
     this.questions = questions || [];
   }
 }

@@ -1,8 +1,9 @@
 <app-hello *ngIf="!app.examRun; else view"></app-hello>
 
 <ng-template #view>
-    <app-card-view *ngIf="app.view_mode === 'card-view'; else list"></app-card-view>
-    <ng-template #list>
-        <app-list-view></app-list-view>
-    </ng-template>
+  <ng-container [ngSwitch]="app.view_mode">
+    <app-summary-view *ngSwitchCase="'summary-view'"></app-summary-view>
+    <app-list-view *ngSwitchCase="'list-view'"></app-list-view>
+    <app-card-view *ngSwitchCase="'card-view'"></app-card-view>
+  </ng-container>
 </ng-template>

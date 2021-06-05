@@ -24,6 +24,7 @@ import { ListViewComponent } from './components/list-view/list-view.component';
 import { MainComponent } from './components/main/main.component';
 import { QuestionCardComponent } from './components/question-card/question-card.component';
 import { TitleBarComponent } from './components/title-bar/title-bar.component';
+import { SummaryViewComponent } from './components/summary-view/summary-view.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { TitleBarComponent } from './components/title-bar/title-bar.component';
     CardViewComponent,
     ExamViewComponent,
     HelloComponent,
+    SummaryViewComponent,
   ],
   imports: [
     BrowserModule,

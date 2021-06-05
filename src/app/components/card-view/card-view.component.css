@@ -1,8 +1,21 @@
-.tab-label {
-    max-width: 500px;
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-.tab-content {
-    width: 90px;
+.content {
+  flex: 1 1 auto;
+
+  display: flex;
 }
 
+.slide {
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  margin-top: 32px;
+  width: 350px;
+}
