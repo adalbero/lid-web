@@ -1,22 +1,21 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { LidCollection, NO_COLLECTION } from 'src/app/model/lid-model';
+import { AppService } from 'src/app/services/app.service';
 
 @Component({
   selector: 'app-collection-card',
   templateUrl: './collection-card.component.html',
-  styleUrls: ['./collection-card.component.css']
+  styleUrls: ['./collection-card.component.css'],
 })
 export class CollectionCardComponent implements OnInit {
   @Input() collection: LidCollection = NO_COLLECTION;
-  @Output() selected: EventEmitter<LidCollection> = new EventEmitter();
 
-  constructor() { }
+  constructor(private app: AppService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onSelected() {
-    this.selected.emit(this.collection);
+    this.app.startExam(this.collection);
   }
 
   getColor() {

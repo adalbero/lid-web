@@ -1,5 +1,5 @@
 <app-question-card
   *ngFor="let q of datasource$ | async"
-  [num]="q.num"
+  [question]="q"
   class="card"
 ></app-question-card>

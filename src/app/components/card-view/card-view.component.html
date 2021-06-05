@@ -1,0 +1,6 @@
+<mat-tab-group mat-align-tabs="start" mat-stretch-tabs dynamicHeight class="tab-label">
+  <mat-tab *ngFor="let q of questions; index as idx" [label]="'' + (idx + 1)">
+      <app-question-card [question]="q" class="tab-content mat-elevation-z4"></app-question-card>
+    <div >XX</div>
+  </mat-tab>
+</mat-tab-group>

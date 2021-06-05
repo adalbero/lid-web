@@ -8,14 +8,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CardViewComponent } from './components/card-view/card-view.component';
 import { CollectionCardComponent } from './components/collection-card/collection-card.component';
 import { CollectionListComponent } from './components/collection-list/collection-list.component';
-import { ListViewComponent } from './components/list/list-view.component';
+import { ExamViewComponent } from './components/exam-view/exam-view.component';
+import { HelloComponent } from './components/hello/hello.component';
+import { ListViewComponent } from './components/list-view/list-view.component';
 import { MainComponent } from './components/main/main.component';
 import { QuestionCardComponent } from './components/question-card/question-card.component';
 import { TitleBarComponent } from './components/title-bar/title-bar.component';
@@ -29,6 +33,9 @@ import { TitleBarComponent } from './components/title-bar/title-bar.component';
     TitleBarComponent,
     CollectionListComponent,
     CollectionCardComponent,
+    CardViewComponent,
+    ExamViewComponent,
+    HelloComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +52,7 @@ import { TitleBarComponent } from './components/title-bar/title-bar.component';
     MatMenuModule,
     MatListModule,
     MatRippleModule,
+    MatTabsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

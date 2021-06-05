@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { LidOption, LidQuestion, NO_QUESTION } from 'src/app/model/lid-model';
+import { AppService } from 'src/app/services/app.service';
 import { DatabaseService } from 'src/app/services/database.service';
 
 @Component({
@@ -8,21 +9,19 @@ import { DatabaseService } from 'src/app/services/database.service';
   styleUrls: ['./question-card.component.css'],
 })
 export class QuestionCardComponent implements OnInit {
-  @Input() num: string = '';
-  q: LidQuestion = NO_QUESTION;
+  @Input() question: LidQuestion = NO_QUESTION;
 
   response?: string;
   options: LidOption[] = [];
 
-  constructor(private db: DatabaseService) {}
+  constructor(private db: DatabaseService, public app: AppService) {}
 
   ngOnInit(): void {
-    this.q = this.db.getQuestion(this.num);
     this.options = [
-      { value: 'a', text: this.q.a, selected: false, disabled: false },
-      { value: 'b', text: this.q.b, selected: false, disabled: false },
-      { value: 'c', text: this.q.c, selected: false, disabled: false },
-      { value: 'd', text: this.q.d, selected: false, disabled: false },
+      { value: 'a', text: this.question.a, selected: false, disabled: false },
+      { value: 'b', text: this.question.b, selected: false, disabled: false },
+      { value: 'c', text: this.question.c, selected: false, disabled: false },
+      { value: 'd', text: this.question.d, selected: false, disabled: false },
     ];
   }
 
@@ -39,7 +38,7 @@ export class QuestionCardComponent implements OnInit {
   statusColor() {
     if (!this.response) {
       return 'bgcolor-undefined';
-    } else if (this.response === this.q.solution) {
+    } else if (this.response === this.question.solution) {
       return 'bgcolor-right';
     } else {
       return 'bgcolor-wrong';
@@ -47,11 +46,11 @@ export class QuestionCardComponent implements OnInit {
   }
 
   titleColor() {
-    if (this.q.area_code === 'politik') {
+    if (this.question.area_code === 'politik') {
       return 'bgcolor-politik';
-    } else if (this.q.area_code === 'geschichte') {
+    } else if (this.question.area_code === 'geschichte') {
       return 'bgcolor-geschichte';
-    } else if (this.q.area_code === 'gesellschaft') {
+    } else if (this.question.area_code === 'gesellschaft') {
       return 'bgcolor-gesellschaft';
     } else {
       return 'bgcolor-bundesland';
@@ -59,9 +58,9 @@ export class QuestionCardComponent implements OnInit {
   }
 
   optionColor(opt: LidOption) {
-    if (this.response && this.q.solution === opt.value) {
+    if (this.response && this.question.solution === opt.value) {
       return 'bgcolor-light-right';
-    } else if (this.response && opt.selected && this.q.solution !== opt.value) {
+    } else if (this.response && opt.selected && this.question.solution !== opt.value) {
       return 'bgcolor-light-wrong';
     } else {
       return 'bgcolor-light-undefined';

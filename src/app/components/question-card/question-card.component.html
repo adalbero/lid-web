@@ -1,13 +1,13 @@
 <div class="card">
   <div class="title" [ngClass]="titleColor()">
-    <div class="area">{{ q.area }}</div>
-    <div class="num">{{ q.num }}</div>
+    <div class="area">{{ question.area }}</div>
+    <div class="num">{{ question.num }}</div>
   </div>
   <div class="frames">
     <div class="status-frame" [ngClass]="statusColor()"></div>
     <div class="question-frame">
-      <div class="question">{{ q.question }}</div>
-      <div class="options">
+      <div class="question">{{ question.question }}</div>
+      <div class="options" *ngIf="app.view_mode !== 'summary-view'">
         <mat-checkbox
           *ngFor="let opt of options"
           class="option"
@@ -19,9 +19,9 @@
           [(ngModel)]="opt.selected"
           >{{ opt.text }}</mat-checkbox
         >
-      </div>
-      <div class="image" *ngIf="q.image !== '-'">
-        <img [src]="'assets/images/' + q.image + '.png'" width="100%" />
+        <div class="image" *ngIf="question.image !== '-'">
+          <img [src]="'assets/images/' + question.image + '.png'" width="100%" />
+        </div>
       </div>
     </div>
   </div>

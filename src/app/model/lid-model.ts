@@ -41,6 +41,10 @@ export interface LidDatabase {
   questions: LidQuestion[];
 }
 
+export interface LidExam {
+  collection: LidCollection;
+}
+
 // Constants
 
 export const NO_QUESTION: LidQuestion = {
