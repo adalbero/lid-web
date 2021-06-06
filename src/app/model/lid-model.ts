@@ -28,7 +28,7 @@ export interface LidCollection {
   icon: string;
   color: string;
   questions: LidQuestion[];
-  onSelect?: (me: DatabaseService) => LidQuestion[],
+  onSelect?: (me: DatabaseService) => LidQuestion[];
 }
 
 export interface LidGroup {
@@ -45,6 +45,12 @@ export interface LidExam {
   collection: LidCollection;
 }
 
+export interface LidExamQuestion {
+  question: LidQuestion;
+  answer?: string;
+  options: LidOption[];
+}
+
 // Constants
 
 export const NO_QUESTION: LidQuestion = {
@@ -59,6 +65,12 @@ export const NO_QUESTION: LidQuestion = {
   area: '<option a>',
   theme: '<option a>',
   image: '<option a>',
+};
+
+export const NO_EXAM_QUESTION: LidExamQuestion = {
+  question: NO_QUESTION,
+  options: [],
+  answer: undefined,
 };
 
 export const NO_COLLECTION: LidCollection = {

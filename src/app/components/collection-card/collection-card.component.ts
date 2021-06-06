@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { LidCollection, NO_COLLECTION } from 'src/app/model/lid-model';
 import { AppService } from 'src/app/services/app.service';
+import { ExamService } from 'src/app/services/exam.service';
 
 @Component({
   selector: 'app-collection-card',
@@ -10,12 +11,12 @@ import { AppService } from 'src/app/services/app.service';
 export class CollectionCardComponent implements OnInit {
   @Input() collection: LidCollection = NO_COLLECTION;
 
-  constructor(private app: AppService) {}
+  constructor(private exam: ExamService) {}
 
   ngOnInit(): void {}
 
   onSelected() {
-    this.app.startExam(this.collection);
+    this.exam.start(this.collection);
   }
 
   getColor() {

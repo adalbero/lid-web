@@ -7,10 +7,10 @@
       [pagination]="{type: 'fraction'}"
       (slideChange)="slideChange($event)"
     >
-      <ng-template swiperSlide *ngFor="let q of questions"
+      <ng-template swiperSlide *ngFor="let eq of exam.examQuestions"
         ><div class="slide">
           <div class="card">
-            <app-question-card [question]="q"></app-question-card>
+            <app-question-card [question]="eq"></app-question-card>
           </div></div
       ></ng-template>
     </swiper>

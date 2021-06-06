@@ -1,4 +1,4 @@
-<app-hello *ngIf="!app.examRun; else view"></app-hello>
+<app-hello *ngIf="!exam.hasExam(); else view"></app-hello>
 
 <ng-template #view>
   <ng-container [ngSwitch]="app.view_mode">
