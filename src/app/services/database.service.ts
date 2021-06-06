@@ -1,3 +1,4 @@
+import { group } from '@angular/animations';
 import { Injectable } from '@angular/core';
 import {
   DB,
@@ -15,6 +16,7 @@ export class DatabaseService {
 
   generalQuestions: LidQuestion[] = [];
   landQuestions: LidQuestion[] = [];
+  all330Questions: LidQuestion[] = [];
 
   constructor() {
     this.initCollections();
@@ -35,8 +37,12 @@ export class DatabaseService {
   initCollections() {
     this.generalQuestions = DB.questions.filter((q) => q.area_code !== 'land');
     this.setBundesland('Berlin');
+    this.all330Questions = [...this.generalQuestions, ...this.landQuestions];
 
-    DB.groups = [this.initGeneralGroup(), ...this.initThemeGroups()];
+    DB.groups = [];
+    DB.groups.push(this.initGeneralGroup());
+    DB.groups.push(...this.initThemeGroups());
+    DB.groups.push(this.initFilterGroup());
   }
 
   setBundesland(land: string) {
@@ -97,42 +103,66 @@ export class DatabaseService {
       collections: [],
     };
 
-    DB.questions.forEach((q) => {
+    this.generalQuestions.forEach((q) => {
       const theme = q.theme;
       const area = q.area;
 
-      if (q.area_code !== 'land') {
-        if (!byTheme.collections.find((x) => x.title === area)) {
-          const collection: LidCollection = {
-            title: q.area,
-            subtitle: 'by Theme',
-            icon: this.getAreaIcon(q.area_code),
-            color: q.area_code,
-            questions: DB.questions.filter((q) => q.area === area),
-          };
+      if (!byTheme.collections.find((x) => x.title === area)) {
+        const collection: LidCollection = {
+          title: q.area,
+          subtitle: 'by Theme',
+          icon: this.getAreaIcon(q.area_code),
+          color: q.area_code,
+          questions: DB.questions.filter((q) => q.area === area),
+        };
 
-          byTheme.collections.push(collection);
-        }
-        this.sortCollection(byTheme.collections);
-
-        if (!byTopic.collections.find((x) => x.title === theme)) {
-          const collection: LidCollection = {
-            title: q.theme,
-            subtitle: q.area,
-            icon: this.getAreaIcon(q.area_code),
-            color: q.area_code,
-            questions: DB.questions.filter(
-              (q) => q.area === area && q.theme === theme
-            ),
-          };
-
-          byTopic.collections.push(collection);
-        }
-        this.sortCollection(byTopic.collections);
+        byTheme.collections.push(collection);
       }
+      this.sortCollection(byTheme.collections);
+
+      if (!byTopic.collections.find((x) => x.title === theme)) {
+        const collection: LidCollection = {
+          title: q.theme,
+          subtitle: q.area,
+          icon: this.getAreaIcon(q.area_code),
+          color: q.area_code,
+          questions: DB.questions.filter(
+            (q) => q.area === area && q.theme === theme
+          ),
+        };
+
+        byTopic.collections.push(collection);
+      }
+      this.sortCollection(byTopic.collections);
     });
 
     return [byTheme, byTopic];
+  }
+
+  initFilterGroup(): LidGroup {
+    const group: LidGroup = {
+      title: 'Filter',
+      collections: [
+        {
+          title: 'Search',
+          subtitle: 'Random questions not answered yet',
+          icon: 'search',
+          color: 'filter',
+          questions: this.getSearchQuestions(this),
+          onSelect: this.getSearchQuestions,
+        },
+        {
+          title: 'Tags',
+          subtitle: 'Random questions not answered yet',
+          icon: 'local_offer',
+          color: 'filter',
+          questions: this.getTagQuestions(this),
+          onSelect: this.getTagQuestions,
+        },
+      ],
+    };
+
+    return group;
   }
 
   sortCollection(collections: LidCollection[]) {
@@ -160,6 +190,16 @@ export class DatabaseService {
       ...me.random(me.generalQuestions, 30),
       ...me.random(me.landQuestions, 3),
     ];
+  }
+
+  getSearchQuestions(me: DatabaseService): LidQuestion[] {
+    return (
+      me.all330Questions.filter((q) => q.question.indexOf('DDR') >= 0) || []
+    );
+  }
+
+  getTagQuestions(me: DatabaseService): LidQuestion[] {
+    return me.all330Questions.filter((q) => q.image !== '-') || [];
   }
 
   random(list: LidQuestion[], size: number): LidQuestion[] {

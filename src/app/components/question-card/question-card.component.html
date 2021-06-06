@@ -19,9 +19,11 @@
           [(ngModel)]="opt.selected"
           >{{ opt.text }}</mat-checkbox
         >
-        <div class="image" *ngIf="question.image !== '-'">
-          <img [src]="'assets/images/' + question.image + '.png'" width="100%" />
-        </div>
+        <img
+          *ngIf="question.image !== '-'"
+          class="image"
+          [src]="'assets/images/' + question.image + '.png'"
+        />
       </div>
     </div>
   </div>
