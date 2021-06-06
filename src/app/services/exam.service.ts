@@ -8,6 +8,7 @@ import { DatabaseService } from './database.service';
 })
 export class ExamService {
   start$: EventEmitter<void> = new EventEmitter();
+  answered$: EventEmitter<LidExamQuestion> = new EventEmitter();
 
   examQuestions: LidExamQuestion[] = [];
   collection?: LidCollection;
@@ -15,11 +16,14 @@ export class ExamService {
   total = 0;
   totalAnswered = 0;
   totalRight = 0;
+  get totalWrong() {
+    return this.totalAnswered - this.totalRight;
+  }
 
   timer$: EventEmitter<string> = new EventEmitter();
   timeout: boolean = false;
 
-  countdown: LidCountdonw = new LidCountdonw(10 * 60, this, this.onTick, this.onStop);
+  countdown: LidCountdonw = new LidCountdonw(10 * 60, this, this.onTick, this.onTimeout);
 
   constructor(private db: DatabaseService) {}
 
@@ -27,7 +31,7 @@ export class ExamService {
     me.timer$.emit(timer);
   }
 
-  onStop(me: ExamService) {
+  onTimeout(me: ExamService) {
     me.timeout = true;
     me.examQuestions.forEach(eq => eq.options.forEach(op => op.disabled = true));
   }
@@ -50,6 +54,12 @@ export class ExamService {
     this.totalAnswered++;
     if (eq.question.solution === answer) {
       this.totalRight++;
+    }
+
+    this.answered$.emit(eq);
+
+    if (this.totalAnswered === this.total) {
+      this.countdown.stop();
     }
   }
 

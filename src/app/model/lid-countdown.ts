@@ -9,7 +9,7 @@ export class LidCountdonw {
     private value: number,
     private exam: ExamService,
     private onTick: (exam: ExamService, value: string) => void,
-    private onStop: (exam: ExamService) => void
+    private onTimeout: (exam: ExamService) => void
   ) {
     this.source = timer(1000, 1000);
   }
@@ -33,11 +33,15 @@ export class LidCountdonw {
         )}`;
         this.onTick(this.exam, text);
       } else {
-        this.onStop(this.exam);
-        if (this.subscription) {
-          this.subscription.unsubscribe();
-        }
+        this.onTimeout(this.exam);
+        this.stop();
       }
     });
+  }
+
+  stop() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

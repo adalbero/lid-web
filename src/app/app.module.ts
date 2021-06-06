@@ -26,6 +26,7 @@ import { QuestionCardComponent } from './components/question-card/question-card.
 import { TitleBarComponent } from './components/title-bar/title-bar.component';
 import { SummaryViewComponent } from './components/summary-view/summary-view.component';
 import { ExamProgressComponent } from './components/exam-progress/exam-progress.component';
+import { ExamProgressBarComponent } from './components/exam-progress-bar/exam-progress-bar.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ExamProgressComponent } from './components/exam-progress/exam-progress.
     HelloComponent,
     SummaryViewComponent,
     ExamProgressComponent,
+    ExamProgressBarComponent,
   ],
   imports: [
     BrowserModule,

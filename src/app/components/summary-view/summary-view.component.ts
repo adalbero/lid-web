@@ -1,7 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { LidExamQuestion, LidQuestion } from 'src/app/model/lid-model';
-import { AppService } from 'src/app/services/app.service';
 import { ExamService } from 'src/app/services/exam.service';
 
 @Component({

@@ -1,5 +1,5 @@
 .progress {
-  background-color: lightgray;
+  background-color: hsl(0, 0%, 95%);
   border-radius: 10px;
   margin: 8px 12px 0 12px;
   padding: 8px;
@@ -46,6 +46,7 @@
 }
 
 .progress TH {
-  color: rgb(0,0,0, 0.60);
+  color: rgba(0,0,0, 0.60);
   text-align: left;
 }
+
