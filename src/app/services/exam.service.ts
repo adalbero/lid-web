@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { LidCountdonw } from '../model/lid-countdown';
 import { LidCollection, LidExamQuestion } from '../model/lid-model';
 import { DatabaseService } from './database.service';
 
@@ -12,17 +12,58 @@ export class ExamService {
   examQuestions: LidExamQuestion[] = [];
   collection?: LidCollection;
 
+  total = 0;
+  totalAnswered = 0;
+  totalRight = 0;
+
+  timer$: EventEmitter<string> = new EventEmitter();
+  timeout: boolean = false;
+
+  countdown: LidCountdonw = new LidCountdonw(10 * 60, this, this.onTick, this.onStop);
+
   constructor(private db: DatabaseService) {}
 
+  onTick(me: ExamService, timer: string) {
+    me.timer$.emit(timer);
+  }
+
+  onStop(me: ExamService) {
+    me.timeout = true;
+    me.examQuestions.forEach(eq => eq.options.forEach(op => op.disabled = true));
+  }
 
   hasExam(): boolean {
     return !!this.collection;
   }
-  
+
+  onAnswer(eq: LidExamQuestion, answer: string) {
+    if (eq.answer || this.timeout) {
+      return;
+    }
+
+    eq.answer = answer;
+    eq.options.forEach((x) => {
+      x.disabled = true;
+      x.selected = x.value == answer;
+    });
+
+    this.totalAnswered++;
+    if (eq.question.solution === answer) {
+      this.totalRight++;
+    }
+  }
+
   start(collection: LidCollection) {
     if (collection.onSelect) {
       collection.questions = collection.onSelect(this.db);
     }
+
+    this.timeout = false;
+
+
+    this.total = collection.questions.length;
+    this.totalAnswered = 0;
+    this.totalRight = 0;
 
     this.collection = collection;
     this.examQuestions = collection.questions.map((q) => {
@@ -57,8 +98,11 @@ export class ExamService {
         answer: undefined,
       };
 
+
       return eq;
     });
+
+    this.countdown.start();
 
     this.start$.emit();
   }

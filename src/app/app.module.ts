@@ -25,6 +25,7 @@ import { MainComponent } from './components/main/main.component';
 import { QuestionCardComponent } from './components/question-card/question-card.component';
 import { TitleBarComponent } from './components/title-bar/title-bar.component';
 import { SummaryViewComponent } from './components/summary-view/summary-view.component';
+import { ExamProgressComponent } from './components/exam-progress/exam-progress.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { SummaryViewComponent } from './components/summary-view/summary-view.com
     ExamViewComponent,
     HelloComponent,
     SummaryViewComponent,
+    ExamProgressComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { LidExamQuestion, LidOption, LidQuestion, NO_EXAM_QUESTION, NO_QUESTION } from 'src/app/model/lid-model';
 import { AppService } from 'src/app/services/app.service';
 import { DatabaseService } from 'src/app/services/database.service';
+import { ExamService } from 'src/app/services/exam.service';
 
 @Component({
   selector: 'app-question-card',
@@ -11,19 +12,13 @@ import { DatabaseService } from 'src/app/services/database.service';
 export class QuestionCardComponent implements OnInit {
   @Input('question') eq: LidExamQuestion = NO_EXAM_QUESTION;
 
-  constructor(public app: AppService) {}
+  constructor(public app: AppService, private exam: ExamService) {}
 
   ngOnInit(): void {
   }
 
-  onAnswer(resp: string) {
-    if (!this.eq.answer) {
-      this.eq.answer = resp;
-      this.eq.options.forEach((x) => {
-        x.disabled = true;
-        x.selected = x.value == resp;
-      });
-    }
+  onAnswer(answer: string) {
+    this.exam.onAnswer(this.eq, answer);
   }
 
   statusColor() {

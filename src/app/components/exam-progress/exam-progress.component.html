@@ -1,0 +1,25 @@
+<div class="progress flex-column">
+  <div class="flex-row">
+    <div class="flex-cell title">
+        <div>Progress</div>
+    </div>
+    <div class="flex-cell flex-center clock">
+        <div>{{ exam.timer$ | async }}</div>
+    </div>
+    <div class="flex-cell flex-right values">
+      <table>
+        <tr>
+          <th>Answered:</th>
+          <td>{{ getPercentage(exam.totalAnswered) }}</td>
+        </tr>
+        <tr>
+          <th>Right:</th>
+          <td>{{ getPercentage(exam.totalRight) }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="bar">
+    <div>----------------</div>
+  </div>
+</div>

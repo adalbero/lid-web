@@ -1,0 +1,51 @@
+.progress {
+  background-color: lightgray;
+  border-radius: 10px;
+  margin: 8px 12px 0 12px;
+  padding: 8px;
+}
+
+.title {
+  font-size: x-large;
+  font-weight: bold;
+
+  color: rgb(0,0,0, 0.60);
+}
+
+.clock {
+    font-size: xx-large;
+    font-weight: bold;
+
+    color: rgb(0,0,0, 0.60);
+}
+
+.flex-cell {
+  flex: 0 0 33%;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.flex-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+}
+
+.progress TH {
+  color: rgb(0,0,0, 0.60);
+  text-align: left;
+}

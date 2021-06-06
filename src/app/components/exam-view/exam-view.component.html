@@ -1,6 +1,7 @@
 <app-hello *ngIf="!exam.hasExam(); else view"></app-hello>
 
 <ng-template #view>
+  <app-exam-progress></app-exam-progress>
   <ng-container [ngSwitch]="app.view_mode">
     <app-summary-view *ngSwitchCase="'summary-view'"></app-summary-view>
     <app-list-view *ngSwitchCase="'list-view'"></app-list-view>
