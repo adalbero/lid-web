@@ -1,0 +1,21 @@
+<mat-accordion>
+    <mat-expansion-panel (opened)="panelOpen = true" (closed)="panelOpen = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Select your state (<i>Bundesland</i>)
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        @for (item of bundeslandList; track item) {
+        <div>{{item}}</div>
+        }
+    </mat-expansion-panel>
+</mat-accordion>
+
+<mat-form-field>
+    <mat-label>Bundesland</mat-label>
+    <mat-select>
+        @for (item of bundeslandList; track item) {
+        <mat-option [value]="item">{{item}}</mat-option>
+        }
+    </mat-select>
+</mat-form-field>
